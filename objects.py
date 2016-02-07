@@ -112,7 +112,7 @@ class Part:
         if self.param == 'CARTESIAN':
             self.last_test_point = (x,self.function(x)+self.origin[1])
             dx = 2*precision
-            dy = self.function(x-self.origin[0]+displacement[0]/abs(displacement[0])*precision)-self.function(x-self.origin[0])
+            dy = self.function(x-self.origin[0]+precision)-self.function(x-self.origin[0]-precision)
         else:
             r1 = self.function(x-precision)
             r2 = self.function(x+precision)
@@ -126,9 +126,9 @@ class Part:
     def get_resulting_force(self, pos, acting_force,velocity, precision, draw_target=None):
         t = self.get_tangent_vector(pos, velocity,precision)
         n = (-t[1], t[0])
-        if t[1]>0:
-            print('bli')
-            t = (-t[0],-t[1])
+        #if t[1]>0:
+        #    print('bli')
+        #    t = (t[0],-t[1])
         self.last_t_vect = t
         self.last_n_vect = n
 
